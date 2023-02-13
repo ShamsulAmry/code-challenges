@@ -37,17 +37,13 @@ public class Solution
     {
         var sortedWords = wordDict.OrderBy(x => x.Length).ToList();
 
-        for (var i = 0; i < sortedWords.Count; i++) {
+        for (var i = sortedWords.Count - 1; i >= 0; i--) {
             var s = sortedWords[i];
-            var sWordDict = new[] { s };
-
-            for (var j = sortedWords.Count - 1; j > i; j--) {
-                if (TestPhrase(sortedWords[j], sWordDict)) {
-                    sortedWords.RemoveAt(j);
-                }
+            if (TestPhrase(s, sortedWords.Take(i).ToArray())) {
+                sortedWords.RemoveAt(i);
             }
         }
 
-        return sortedWords;
+        return sortedWords.OrderByDescending(x => x.Length).ToArray();
     }
 }
