@@ -31,4 +31,15 @@ public class UnitTests
         
         Assert.False(result);
     }
+
+    [Fact]
+    public void Given_RepeatingCharactersInWordDict_ReturnsOptimized()
+    {
+        var solution = new Solution();
+        var wordDict = new[] { "a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa" };
+
+        var optimizedWordDict = solution.OptimizeWordDict(wordDict);
+
+        Assert.Equal(new[] { "a" }, optimizedWordDict);
+    }
 }
